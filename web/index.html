@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MZ Racing</title>
+    <link rel="stylesheet" href="css/racing.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section id="lobby" class="lobby" role="dialog" aria-modal="true" aria-label="Lobby de corridas" aria-hidden="true">
+        <header class="lobby__header">
+          <div>
+            <p class="kicker" data-i18n="kicker">MZ RACING</p>
+            <h1 data-i18n="title">Corridas disponíveis</h1>
+            <p class="lobby__summary" data-i18n="subtitle">Entre, observe e acompanhe sessões ativas.</p>
+          </div>
+          <button id="closeButton" class="icon-button" type="button" aria-label="Fechar">×</button>
+        </header>
+
+        <nav id="filters" class="filters" aria-label="Filtrar corridas">
+          <button class="filter is-active" data-filter="all" type="button" data-i18n="filterAll">Todas</button>
+          <button class="filter" data-filter="registration" type="button" data-i18n="filterRegistration">Inscrições</button>
+          <button class="filter" data-filter="running" type="button" data-i18n="filterRunning">Em andamento</button>
+          <button class="filter" data-filter="finished" type="button" data-i18n="filterFinished">Encerradas</button>
+        </nav>
+
+        <div class="lobby__content">
+          <section class="race-list" aria-label="Lista de corridas">
+            <div id="catalogStatus" class="state-block" role="status"></div>
+            <div id="raceList" class="race-list__items"></div>
+          </section>
+          <aside id="raceDetail" class="race-detail" aria-label="Detalhes da corrida">
+            <div class="detail-empty" data-i18n="selectRace">Selecione uma corrida para ver os detalhes.</div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="organizer" class="organizer" role="dialog" aria-modal="true" aria-label="Organizador de corridas" aria-hidden="true">
+        <header class="lobby__header organizer__header">
+          <div>
+            <p class="kicker" data-i18n="organizerKicker">CENTRAL DE PROVA</p>
+            <h1 data-i18n="organizerTitle">Organizador de corridas</h1>
+            <p class="lobby__summary" data-i18n="organizerSubtitle">Crie sessões e acompanhe a operação em tempo real.</p>
+          </div>
+          <button id="organizerCloseButton" class="icon-button" type="button" aria-label="Fechar">×</button>
+        </header>
+
+        <div class="organizer__toolbar">
+          <nav id="organizerTabs" class="filters organizer__tabs" aria-label="Seções do organizador">
+            <button class="filter is-active" data-organizer-tab="sessions" type="button" data-i18n="organizerSessions">Sessões</button>
+            <button class="filter" data-organizer-tab="routes" type="button" data-i18n="organizerCreate">Nova corrida</button>
+          </nav>
+          <form id="organizerSearch" class="organizer__search" role="search">
+            <label class="sr-only" for="organizerSearchInput" data-i18n="searchLabel">Buscar</label>
+            <input id="organizerSearchInput" name="route-search" type="search" maxlength="48" autocomplete="off" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar por rota…" />
+            <button class="action" type="submit" data-i18n="search">Buscar</button>
+          </form>
+        </div>
+
+        <div class="organizer__content">
+          <section class="race-list organizer__list" aria-label="Itens do organizador">
+            <div id="organizerStatus" class="state-block" role="status"></div>
+            <div id="organizerList" class="race-list__items"></div>
+            <div class="organizer__pagination">
+              <button id="organizerPrevious" class="action" type="button" data-i18n="previous">Anterior</button>
+              <span id="organizerPage" aria-live="polite">1</span>
+              <button id="organizerNext" class="action" type="button" data-i18n="next">Próxima</button>
+            </div>
+          </section>
+          <aside id="organizerDetail" class="race-detail organizer__detail" aria-label="Operação da corrida">
+            <div class="detail-empty" data-i18n="organizerSelect">Selecione uma sessão ou rota.</div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="raceHud" class="race-hud" aria-label="Progresso da corrida" aria-hidden="true">
+        <div class="hud__phase" id="hudPhase">CORRIDA</div>
+        <div class="hud__time" id="hudTime">00:00.000</div>
+        <div class="hud__progress">
+          <span id="hudCheckpoint">CHECKPOINT 1 / 1</span>
+          <span id="hudRoute"></span>
+        </div>
+      </section>
+
+      <section id="results" class="results" aria-label="Resultado da corrida" aria-hidden="true">
+        <header>
+          <p class="kicker" data-i18n="resultKicker">RESULTADO OFICIAL</p>
+          <h2 id="resultTitle" data-i18n="resultTitle">Corrida encerrada</h2>
+        </header>
+        <ol id="resultList" class="result-list"></ol>
+        <p id="resultExpiry" class="result-expiry"></p>
+      </section>
+
+      <div id="toast" class="toast" role="status" aria-live="polite" aria-hidden="true"></div>
+    </main>
+    <script src="js/strings.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
